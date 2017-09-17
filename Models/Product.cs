@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace WebApplication2.Models
 {
-    public partial class Products
+    public partial class Product
     {
-        public Products()
+        public Product()
         {
             OrderDetails = new HashSet<OrderDetails>();
         }
@@ -22,7 +22,7 @@ namespace WebApplication2.Models
         public bool? Discontinued { get; set; }
 
         public Category Category { get; set; }
-        public Suppliers Supplier { get; set; }
+        public Supplier Supplier { get; set; }
         public ICollection<OrderDetails> OrderDetails { get; set; }
     }
 }

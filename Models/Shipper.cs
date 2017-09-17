@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace WebApplication2.Models
 {
-    public partial class Shippers
+    public partial class Shipper
     {
-        public Shippers()
+        public Shipper()
         {
             Orders = new HashSet<Order>();
         }

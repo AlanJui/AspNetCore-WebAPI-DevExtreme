@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace WebApplication2.Models
 {
-    public partial class Territories
+    public partial class Territory
     {
-        public Territories()
+        public Territory()
         {
             EmployeeTerritories = new HashSet<EmployeeTerritories>();
         }

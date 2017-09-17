@@ -6,32 +6,36 @@ namespace WebApplication2.Models
 {
     public partial class NorthwindContext : DbContext
     {
-        public virtual DbSet<Categories> Categories { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<CustomerCustomerDemo> CustomerCustomerDemo { get; set; }
         public virtual DbSet<CustomerDemographics> CustomerDemographics { get; set; }
-        public virtual DbSet<Customers> Customers { get; set; }
-        public virtual DbSet<Employees> Employees { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<EmployeeTerritories> EmployeeTerritories { get; set; }
         public virtual DbSet<OrderDetails> OrderDetails { get; set; }
-        public virtual DbSet<Orders> Orders { get; set; }
-        public virtual DbSet<Products> Products { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Region> Region { get; set; }
-        public virtual DbSet<Shippers> Shippers { get; set; }
-        public virtual DbSet<Suppliers> Suppliers { get; set; }
-        public virtual DbSet<Territories> Territories { get; set; }
+        public virtual DbSet<Shipper> Shippers { get; set; }
+        public virtual DbSet<Supplier> Suppliers { get; set; }
+        public virtual DbSet<Territory> Territories { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer(@"Server=localhost;Database=Northwind;Trusted_Connection=True;");
-            }
-        }
+        public NorthwindContext(DbContextOptions<NorthwindContext> options)
+            : base(options)
+        { }
+
+        //        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //        {
+        //            if (!optionsBuilder.IsConfigured)
+        //            {
+        //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+        //                optionsBuilder.UseSqlServer(@"Server=localhost;Database=Northwind;Trusted_Connection=True;");
+        //            }
+        //        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Categories>(entity =>
+            modelBuilder.Entity<Category>(entity =>
             {
                 entity.HasKey(e => e.CategoryId);
 
@@ -88,7 +92,7 @@ namespace WebApplication2.Models
                 entity.Property(e => e.CustomerDesc).HasColumnType("ntext");
             });
 
-            modelBuilder.Entity<Customers>(entity =>
+            modelBuilder.Entity<Customer>(entity =>
             {
                 entity.HasKey(e => e.CustomerId);
 
@@ -132,7 +136,7 @@ namespace WebApplication2.Models
                 entity.Property(e => e.Region).HasMaxLength(15);
             });
 
-            modelBuilder.Entity<Employees>(entity =>
+            modelBuilder.Entity<Employee>(entity =>
             {
                 entity.HasKey(e => e.EmployeeId);
 
@@ -247,7 +251,7 @@ namespace WebApplication2.Models
                     .HasConstraintName("FK_Order_Details_Products");
             });
 
-            modelBuilder.Entity<Orders>(entity =>
+            modelBuilder.Entity<Order>(entity =>
             {
                 entity.HasKey(e => e.OrderId);
 
@@ -315,7 +319,7 @@ namespace WebApplication2.Models
                     .HasConstraintName("FK_Orders_Shippers");
             });
 
-            modelBuilder.Entity<Products>(entity =>
+            modelBuilder.Entity<Product>(entity =>
             {
                 entity.HasKey(e => e.ProductId);
 
@@ -374,7 +378,7 @@ namespace WebApplication2.Models
                     .HasColumnType("nchar(50)");
             });
 
-            modelBuilder.Entity<Shippers>(entity =>
+            modelBuilder.Entity<Shipper>(entity =>
             {
                 entity.HasKey(e => e.ShipperId);
 
@@ -387,7 +391,7 @@ namespace WebApplication2.Models
                 entity.Property(e => e.Phone).HasMaxLength(24);
             });
 
-            modelBuilder.Entity<Suppliers>(entity =>
+            modelBuilder.Entity<Supplier>(entity =>
             {
                 entity.HasKey(e => e.SupplierId);
 
@@ -424,7 +428,7 @@ namespace WebApplication2.Models
                 entity.Property(e => e.Region).HasMaxLength(15);
             });
 
-            modelBuilder.Entity<Territories>(entity =>
+            modelBuilder.Entity<Territory>(entity =>
             {
                 entity.HasKey(e => e.TerritoryId)
                     .ForSqlServerIsClustered(false);
