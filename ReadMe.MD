@@ -10,9 +10,7 @@
 
 為能正常操作以下「步驟」，請依據「事前準備」章節，備妥應安裝之軟體套件及資料庫。
 
-
 ---
-
 
 ## 開發機作業程序
 
@@ -23,7 +21,7 @@ $ git clone git@github.com:AlanJui/AspNetCore-WebAPI-DevExtreme.git
 
 #### （2）進入專案資料夾
 ```
-$ cd AspNetCore-WebAPI-DevExtreme.git
+$ cd AspNetCore-WebAPI-DevExtreme
 ```
 
 #### （3）安裝程式所需套件
@@ -43,7 +41,6 @@ $ dotnet run
 
 #### （6）驗證程式已正常運作
 使用 Web 瀏覽器，瀏覽網址： http://127.0.0.1:5000/api/orders
-
 
 ---
 
@@ -79,9 +76,51 @@ $ touch hosting.json
 $ mv hosting.json.staging hosting.json
 ```
 
+### 測試機上版作業程序
 
-### 更新版本作業程序
+#### （1）進入專案資料夾
+```
+$ cd AspNetCore-WebAPI-DevExtreme
+```
 
+#### （2）安裝程式所需套件
+```
+$ dotnet restore
+```
+
+#### （3）編譯與打包程式準備發行所需檔案
+```
+$ dotnet publish
+```
+
+#### （4）暫停 Web API Service
+```
+$ sudo systemctl stop web-api-qa.service
+```
+
+#### （5）佈署發行用檔案
+```
+$ sudo cp bin/Debug/netcoreapp2.0/publish/* /var/www/web-api-qa
+```
+
+#### （6）重新啟動 Web API Service
+```
+$ sudo systemctl start web-api-qa.service
+```
+
+#### （7）驗證 Web API Service 已正常運作
+```
+$ sudo systemctl status web-api-qa.service
+```
+
+#### （8）瀏覽 Web API Service 輸出結果
+```
+http://192.168.66.10:5100/api/orders
+```
+【註】：需注意「測試機」使用的 Port 為 5100 ；非預設的 5000 。
+
+
+### 測試機更新版本作業程序
 
 #### （1）進入專案資料夾根路徑
 ```
@@ -93,31 +132,17 @@ $ cd AspNetCore-WebAPI-DevExtreme
 $ git pull
 ```
 
-#### （3）安裝程式所需套件
-```
-$ dotnet restore
-```
-
-#### （4）編譯與組建（Build）程式
-```
-$ dotnet build
-```
-
-#### （5）啟動程式
-```
-$ dotnet run
-```
-
-#### （6）驗證程式已正常運作
-使用 Web 瀏覽器，瀏覽網址： http://127.0.0.1:5100/api/orders
-
-【註】：需注意「測試機」使用的 Port 為 5100 ；非預設的 5000 。
+#### （3）執行「測試機上版作業程序」
+執行「測試機上版作業程序」所有操作步驟。
 
 
 ---
 
 
-## 正式機作業程序
+## 正式機作業流程
+
+
+### 正式機啟始作業程序
 
 #### （1）進入專案資料夾根路徑
 正式機的「啟始作業」，僅需執行一次。
@@ -126,7 +151,49 @@ $ git clone git@github.com:AlanJui/AspNetCore-WebAPI-DevExtreme.git
 ```
 
 
-### 更新版本作業程序
+### 正式機上版作業程序
+
+#### （1）進入專案資料夾
+```
+$ cd AspNetCore-WebAPI-DevExtreme
+```
+
+#### （2）安裝程式所需套件
+```
+$ dotnet restore
+```
+
+#### （3）編譯與打包程式準備發行所需檔案
+```
+$ dotnet publish
+```
+
+#### （4）暫停 Web API Service
+```
+$ sudo systemctl stop web-api.service
+```
+
+#### （5）佈署發行用檔案
+```
+$ sudo cp bin/Debug/netcoreapp2.0/publish/* /var/www/web-api
+```
+
+#### （6）重新啟動 Web API Service
+```
+$ sudo systemctl start web-api.service
+```
+
+#### （7）驗證 Web API Service 已正常運作
+```
+$ sudo systemctl status web-api.service
+```
+
+#### （8）瀏覽 Web API Service 輸出結果
+```
+http://192.168.66.10:5000/api/orders
+```
+
+### 正式機更新版本作業程序
 
 
 #### （1）進入專案資料夾根路徑
@@ -139,23 +206,8 @@ $ cd AspNetCore-WebAPI-DevExtreme
 $ git pull
 ```
 
-#### （3）安裝程式所需套件
-```
-$ dotnet restore
-```
-
-#### （4）編譯與組建（Build）程式
-```
-$ dotnet build
-```
-
-#### （5）啟動程式
-```
-$ dotnet run
-```
-
-#### （6）驗證程式已正常運作
-使用 Web 瀏覽器，瀏覽網址： http://127.0.0.1:5000/api/orders
+#### （3）執行「正式機上版作業程序」
+執行「正式機上版作業程序」所有操作步驟。
 
 
 ---
