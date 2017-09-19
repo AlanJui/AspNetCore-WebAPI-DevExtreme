@@ -1,2 +1,4 @@
 bin/
 obj/
+bower_components/
+hosting.json
