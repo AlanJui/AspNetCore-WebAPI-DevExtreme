@@ -100,7 +100,7 @@ $ sudo systemctl stop web-api-qa.service
 
 #### （5）佈署發行用檔案
 ```
-$ sudo cp bin/Debug/netcoreapp2.0/publish/* /var/www/web-api-qa
+$ sudo cp -r bin/Debug/netcoreapp2.0/publish/* /var/www/WebAPI_QA/
 ```
 
 #### （6）重新啟動 Web API Service
@@ -175,7 +175,7 @@ $ sudo systemctl stop web-api.service
 
 #### （5）佈署發行用檔案
 ```
-$ sudo cp bin/Debug/netcoreapp2.0/publish/* /var/www/web-api
+$ sudo cp -r bin/Debug/netcoreapp2.0/publish/* /var/www/WebAPI/
 ```
 
 #### （6）重新啟動 Web API Service
